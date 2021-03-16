@@ -1,0 +1,1 @@
+(self.webpackChunksimple_decorators=self.webpackChunksimple_decorators||[]).push([[31],{31:s=>{function t(){return`<div class="content">\n  <h2 class="subtitle">${this.title}</h2>\n  ${this.loading}\n</div>`}s.exports=function(s){return t.call(s,s)}}}]);
