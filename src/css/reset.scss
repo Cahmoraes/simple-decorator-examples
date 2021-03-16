@@ -1,0 +1,40 @@
+*,:after, :before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'IBM Plex Mono', monospace;
+  height: 100vh;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  &:active {
+    color: #a252fd; 
+  }
+  &:visited {
+    color: #913BF3;
+  }
+}

@@ -1,0 +1,120 @@
+@import '../../css/grid';
+
+#main-menu {
+  height: calc(100vh - 24px);
+  padding: 10px;
+  overflow-y: auto;
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  @include d(s) {
+    position: inherit;
+    width: inherit;
+    background: inherit;
+    height: inherit;
+    padding: inherit;
+    overflow-y: inherit;
+  }
+
+  h1 {
+    margin-bottom: 1.6rem;
+    font-size: 2rem;
+  }
+
+  li {
+    margin-bottom: 8px;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    line-height: 1.2;
+    font-size: 1.4rem;
+    padding: .5rem;
+    border-radius: 4px;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    &.active {
+      background: rgba(0, 0, 0, 0.05);
+      & > a {
+        color: #913BF3;
+        font-weight: bold;
+      }
+    }
+
+    a {
+      display: inline-block;
+      width: 100%;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  
+  .hamburguer {
+    display: none;
+    width: 30px;
+    margin-right: 1rem;
+    cursor: pointer;
+    position: relative;
+    will-change: auto;
+
+    @include d(s) {
+      display: block;
+    }
+
+    &.active {
+      transform: rotate(45deg);
+      transition: .3s ease-in-out;
+      will-change: auto;
+      & > div:first-child {
+        transform: rotate(90deg);
+        top: 7px;
+      }
+  
+      & > div:last-child {
+        transform: rotate(90deg);
+        top: -7px;
+      }
+    }
+
+    & > div {
+      position: relative;
+      height: 3px;
+      margin: 4px 0;
+      background: #913BF3;
+      transition: .3s ease-in-out;
+    }
+  }
+  
+  #nav-bar {
+    @include d(s) {
+        will-change: auto;
+        position: fixed;
+        background: #a252fd;
+        z-index: 999;
+        left: -100%;
+        top: 0;
+        height: 100vh;
+        padding: 10px;
+        transition: all .3s ease-out;
+        & li {
+          padding: .7rem;
+          border-radius: .4rem;
+        }
+        & a {
+          color: #FFF;
+        }
+
+      &.active {
+        left: 0;
+      }
+    }
+  }
+}

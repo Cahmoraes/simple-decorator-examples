@@ -1,0 +1,101 @@
+<div class="content">
+  <h2 class="subtitle">${this.title}</h2>
+  <article id="observable">
+    <div class="container-fluid">
+      <div class="grid-12">
+        <section class="row">
+          <div class="grid-12 description">
+            <h3>Sintaxe</h3>
+            <pre class="code">
+                const $observable = so.observable(param [,function])
+              </pre>
+            <p>Cria um observable.</p>
+            <h3>Parâmetros</h3>
+            <p>
+              param: String, Number, Object, null, Function.<br>
+              Valor inicial do observable.
+            </p>
+            <p>
+              O observable pode ser iniciado ou atualizado com uma função que obrigatóriamente deve retornar um valor, o valor retornado será atribuído ao valor do Observable.<br>
+              Se o obervable for iniciado com uma função que não possui retorno, seu valor será a prória função.
+            </p>
+            <p>
+              Quando um Obervable for atualizado, ele pode receber uma função de callback. Esta função receberá como parâmetro o valor atual do obervable.<br>
+              Se a função de callback não tiver um retorno, o valor permanecerá com o valor atual.
+            </p>
+            <pre class="code">
+              const $obs = so.observable(() => 1) <br>
+              console.log($obs()) // 1 <br>
+              $obs((currentValue) => currentValue + 2) <br>
+              console.log($obs()) // 3 <br>
+              $obs((currentValue) => { <br>
+                <span class="tab_2">console.log(currentValue + 1) //4 </span>
+              }) <br>
+              console.log($obs()) // 3 <br>
+            </pre>
+            <p>
+              function: Função Middleware. Intercepta todas as mudanças de valor no Observable.<br>
+              Para saber mais sobre Middleware, acesse: <a is="app-link" href="/middleware">Middleware</a>.
+            </p>
+            <h3>Métodos</h3>
+            <h4>subscribe(function)</h4>
+            <p>Inscreve no Observable, recebe uma função de callback e retorna uma inscrição.</p>
+            <pre class="code">
+                const subscription = $observable.subscribe(value => value.toUpperCase())<br>
+                subscription.dispose() // cancela a inscrição.
+            </pre>
+            <h4>pipe(...function)</h4>
+            <p>Pipe é um operador de trasformação. Recebe uma ou mais funções por parâmetros e retorna um observable.</p>
+            <p>
+              Cada função deve receber um parâmetro que será o valor do observable e retornar o valor transformado que será passado para a próxima função. Ao término, o mesmo observable será retornado, porém com seu valor transformado pelas Pipeable Functions.
+            </p>
+            <pre class="code">
+              const $obs = so.observable(3)<br>
+              $obs.pipe(
+                <span class="tab_2">(value) => value * 10,</span>
+                <span class="tab_2">(value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })</span>
+              ).subscribe(console.log)<br>
+              // R$ 30,00
+            </pre>
+            <h3>Propriedades</h3>
+            <h4>prevValue</h4>
+            <p>Retorna o valor anterior observable.</p>
+            <h4>initialValue</h4>
+            <p>retorna o valor inicial do observable.</p>
+            <pre class="code">
+                const $observable = so.observable(1)<br>
+                $observable(3) <br>
+                $observable(5) <br>
+                console.log($observable.prevValue) // 3 <br>
+                console.log($observable.initialValue) // 1 <br>
+              </pre>
+            <!-- <h4>pipe(...fn)</h4>
+            <p>Retorna um Pipeable Obseravable. Recebe uma ou mais funções que vão transformar o valor do observable sempre que ele for exibido.</p>
+            <pre class="code">
+                const $pipeable = $observable.pipe(fn1, fn2, fn3)
+              </pre>
+            <p>
+              Clique aqui para mais informações sobre
+              <a is="app-link" href="/pipeableobservable">Pipeable Observable</a>.
+            </p> -->
+          </div>
+        </section>
+        <section class="row examples">
+          <div class="grid-12">
+            <button id="${this.button_1}"></button>
+          </div>
+          <div class="grid-12 MT10">
+            <div class="row">
+              <div class="grid-6">
+                <p id="inicialValue"></p>
+              </div>
+              <div class="grid-6">
+                <p id="prevValue"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</div>
