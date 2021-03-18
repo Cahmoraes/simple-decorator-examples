@@ -2,7 +2,7 @@ import so from '../../js/so'
 import template from './template.html'
 import './styles'
 import sd from '../../js/sd'
-import { domInject } from '../../js/utils/decorators/decoratos'
+import { domInject } from '../../js/utils/decorators/property_decorators'
 
 export default class Property {
   constructor (element = document.getElementById(process.env.ROOT_ELEMENT)) {
@@ -22,7 +22,7 @@ export default class Property {
     this._$obs_1 = null
 
     this._config = {
-      title: 'Property',
+      title: 'Property Decorator',
       label_1: this._label_1,
       label_2: this._label_2,
       label_3: this._label_3,

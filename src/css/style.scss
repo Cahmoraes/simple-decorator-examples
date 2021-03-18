@@ -1,6 +1,6 @@
-@import './variables';
-@import './reset';
-@import './grid';
+@import "./variables";
+@import "./reset";
+@import "./grid";
 
 html {
   @include d(s) {
@@ -10,13 +10,14 @@ html {
 
 .subtitle {
   margin-bottom: 2rem;
-  
+  color: #42445a;
+
   &::after {
-    content: '';
+    content: "";
     display: block;
     width: 100%;
     height: 2px;
-    background: #913BF3;
+    background: #22b2ea;
   }
 }
 
@@ -33,14 +34,18 @@ input[type="text"] {
   outline: #b6b6d6;
 }
 
+h1 {
+  color: #42445a;
+}
+
 .description {
   margin-bottom: 25px;
   font-size: 1.4rem;
   line-height: 2.1rem;
-  border-bottom: 1px solid #98e;
+  border-bottom: 1px solid #22b2ea;
 
   h3 {
-    background-color: #913BF3;
+    background-color: #22b2ea;
     color: #fff;
     font-weight: 400;
     max-width: max-content;
@@ -49,13 +54,13 @@ input[type="text"] {
   }
 
   .code {
-    border-left: 0.4rem solid #bba0ff;
+    border-left: 0.4rem solid #8cacd0;
     margin-bottom: 2rem;
     max-width: 100%;
     overflow: auto;
     padding: 2.4rem 0 2.4rem 1rem;
     width: 100%;
-    background: #FAFAFA;
+    background: #fafafa;
     white-space: normal;
 
     & > * {
@@ -81,17 +86,18 @@ input[type="text"] {
     width: 100%;
     text-align: center;
     padding: 5px;
-    background: #913BF3;
-    border: 1px solid #913BF3;
+    background: #22b2ea;
+    border: 1px solid #22b2ea;
     border-radius: 3px;
-    color: #FFF;
+    color: #fff;
     font-weight: bold;
-    transition: background .3s ease-out;
+    transition: background 0.3s ease-out;
     text-transform: uppercase;
   }
 }
 
-p {
+p,
+ul {
   margin-bottom: 1rem;
 }
 
@@ -105,10 +111,10 @@ p {
 
 .MAXW250PERC {
   @include d(l) {
-    max-width: 25rem!important;
+    max-width: 25rem !important;
   }
   @include d(m) {
-    max-width: 25rem!important;
+    max-width: 25rem !important;
   }
 }
 
@@ -127,8 +133,8 @@ p {
 }
 
 .copyright {
-  background: linear-gradient(#9b30f9,#84e);
-  color: #FFF;
+  background: linear-gradient(#22b2ea, #24baf5);
+  color: #fff;
   padding: 5px;
   font-size: 1.5rem;
   font-family: monospace;
@@ -139,9 +145,9 @@ p {
 }
 
 .content {
-  animation: showContent .3s forwards;
+  animation: showContent 0.3s forwards;
   will-change: auto;
-  margin-bottom: 2rem!important;
+  margin-bottom: 2rem !important;
 }
 
 @keyframes showContent {

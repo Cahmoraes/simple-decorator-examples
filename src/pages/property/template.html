@@ -7,20 +7,33 @@
           <div class="grid-12 description">
             <h3>Sintaxe</h3>
             <pre class="code">
-                function middleware(prevValue, newValue, next) {
-                  <span class="tab_1">console.log(prevValue) // 1</span>
-                  <span class="tab_1">console.log(newValue) // 2 </span>
-                  <span class="tab_1">console.log(next()) // 2 </span>
-                }
-                <span>const $obs = so.obervable(1, middleware)</span>
-                <span>$obs(2)</span>
-              </pre>
-            <p>Funções middleware interceptam o observable quando ele sofre uma mudança. Deste modo é possível realizar um side-effect durante a atualização do observable, além de interceptar, transformar e alterar o valor do observable.</p>
+              sd.property(this, handler)
+            </pre>
+            <p>
+              O Decorator Pattern é um mecanismo que permite estender o comportamento de um objeto em tempo de execução, adicionando novas funcionalidades sem ter que criar uma nova classe ou, no caso do JavaScript, função construtora.
+            </p>
+            <p>
+              O decorador de propriedade é uma função aplicada na declaração de propriedades em nossas classes, dentro do <strong>constructor</strong>.<br>
+              Ela obtém a referência do objeto da classe <strong>(this)</strong> e um objeto contendo o nome de cada propriedade que será criada e adicionada à classe e que terá seu comportamento estendido por um ou mais decorators.
+            </p>
             <h3>Parâmetros</h3>
-            <p><strong>prevValue:</strong> Valor anterior do observable.</p>
-            <p><strong>newValue:</strong> Novo valor passado para o observable via parâmetro: $obs('param')</p>
-            <p><strong>next:</strong> Função que ao ser executada, atualizará o valor do observable para o novo valor e retornará o novo valor atualizado. Se nada for passado para ela: next(), apenas atualizará o valor do observable com o newValue. Se for passado algum parâmtro, atualizará o valor do observable com o valor do parâmetro: next(3).</p>
-            <p>O exemplo abaixo demonstra os valores de prevValue e newValue sendo atualizados conforme o input recebe informação. E os dados do input atualizam o Observable com a chamada do next(event.target.value).</p>
+            <p><strong>this:</strong> Objeto this associado à classe.</p>
+            <p><strong>handler:</strong> Objeto de configurações que contém as propriedades a serem decoradas, seguidas por seus respectivos decorators. No caso de mais de um decorator, os mesmos devem ser passados dentro de um array.</p>
+            <pre class="code">
+              class FormExample {
+              <span class="tab_1">constructor() {</span>
+              <span class="tab_2">sd.property(</span>
+              <span class="tab_3">this,</span>
+              <span class="tab_3">{</span>
+              <span class="tab_4">_button_1: domInject('#button_1'),</span>
+              <span class="tab_4">_inicialValue: domInject('#inicialValue'),</span>
+              <span class="tab_4">_prevValue: domInject('#prevValue')</span>
+              <span class="tab_3">}</span>
+              <span class="tab_2">)</span>
+              <span class="tab_1">}</span>
+              <span class="tab_1">...</span>
+              }
+            </pre>
           </div>
         </section>
         <section class="row">
@@ -46,6 +59,42 @@
                 </div>
               </div>
             </div>
+        </section>
+        <section class="row">
+          <div class="grid-12 description">
+            <h3>Anatomia do decorator de propriedade</h3>
+            <p>
+              Os decorators de propriedade, são funções que recebem dois parâmetros: "thisArg e property".
+              Sendo <strong>thisArg</strong> a referência da instância do objeto da classe, e <strong>property</strong> a propriedade que será criada e decorada.
+            </p>
+            <p>É possível receber parâmetros adicionais para auxiliar na configuração do decorator, por meio de Higher-Order-Function (uma função que recebe ou rotorna outra função).</p>
+            <p>
+              O decorator abaixo, conhecido como domInject, é uma Higher-Order-Function, recebe os parâmetros de configuração do decorator: <strong>selector</strong> e <strong>list</strong> e retorna uma nova função que será chamada pelo método sd.property onde serão passados os argumentos necessários para a construção do decorator:
+            </p>
+            <ul>
+              <li>
+                <strong>thisArg</strong>: this associado à respectiva classe onde a propriedade será criada
+              </li>
+              <li>
+                <strong>property</strong>: nome da propriedade que será criada e receberá o decorator.
+              </li>
+            </ul>
+            <p>
+              O papel do domInject é receber um seletor CSS, adicionar a nova propriedade na classe e configurar decriptor da propriedade. E neste caso, estamos dizendo que quando a propriedade for acessada para leitura: <strong>objInstance.property</strong>, será retornado uma referência para um elemento no DOM ou null caso não exista.
+            </p>
+            <pre class="code">
+              const domInject = (selector, list = false) => (thisArg, property) => {
+                <span class="tab_1">let element = null</span>
+                <span class="tab_2">return Object.defineProperty(thisArg, property, {</span>
+                <span class="tab_3">get () {</span>
+                <span class="tab_4">if (!element && !list) element = document.querySelector(selector)</span>
+                <span class="tab_4">else if (!element && list) element = document.querySelectorAll(selector)</span>
+                <span class="tab_3">return element</span>
+                <span class="tab_2">}</span>
+                <span class="tab_1">})</span>
+              }
+            </pre>
+          </div>
         </section>
       </div>
     </div>

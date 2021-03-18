@@ -36,20 +36,24 @@
     border-radius: 4px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.05);
+      background: #ddeaee61;
     }
 
     &.active {
-      background: rgba(0, 0, 0, 0.05);
+      background: #ddeaee61;
       & > a {
-        color: #913BF3;
+        color: #8CACD0;
         font-weight: bold;
+        &:visited {
+          color: #8CACD0;
+        }
       }
     }
 
     a {
       display: inline-block;
       width: 100%;
+      color: #42445A;
       &:hover {
         opacity: 0.7;
       }
@@ -88,7 +92,7 @@
       position: relative;
       height: 3px;
       margin: 4px 0;
-      background: #913BF3;
+      background: #22B2EA;
       transition: .3s ease-in-out;
     }
   }
@@ -97,7 +101,7 @@
     @include d(s) {
         will-change: auto;
         position: fixed;
-        background: #a252fd;
+        background: #22B2EA;
         z-index: 999;
         left: -100%;
         top: 0;

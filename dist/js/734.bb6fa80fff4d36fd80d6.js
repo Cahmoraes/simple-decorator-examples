@@ -1,1 +1,0 @@
-(self.webpackChunksimple_decorators=self.webpackChunksimple_decorators||[]).push([[734],{734:(e,s,r)=>{"use strict";r.r(s)}}]);
