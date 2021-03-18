@@ -6,7 +6,7 @@
 
 ## :rocket: Sobre
 
-<img src="https://github.com/Cahmoraes/simple-observable-examples/blob/main/src/assets/examples/example-1.gif" alt="Simple Decorator">
+<img src="https://github.com/Cahmoraes/simple-decorator-examples/blob/main/src/assets/examples/sd-example.gif" alt="Simple Decorator">
 
 ## Descrição
 Desenvolvimento da API Simple Decorator.
