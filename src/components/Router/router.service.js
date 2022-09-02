@@ -1,7 +1,7 @@
 import so from '../../js/so'
 import pushState from '../../js/utils/pushState'
 
-function routerServiceMiddleware (_, newValue, next) {
+function routerServiceMiddleware(_, newValue, next) {
   const path = newValue.replace('/', '')
   next(path)
 }
@@ -10,22 +10,22 @@ const initialPath = (window.location.pathname.slice(1) || '').replace('/', '')
 const $router = so.observable(initialPath, routerServiceMiddleware)
 
 export class RouterService {
-  constructor () {
+  constructor() {
     if (!RouterService.instance) {
       RouterService.instance = this
     }
     return RouterService.instance
   }
 
-  get route () {
+  get route() {
     return $router
   }
 
-  setRoute (path) {
+  setRoute(path) {
     $router(path)
   }
 
-  navigate (path) {
+  navigate(path) {
     pushState(path.replace('/', ''))
     this.setRoute(path)
   }

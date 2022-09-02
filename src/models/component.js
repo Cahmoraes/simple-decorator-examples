@@ -1,9 +1,9 @@
 export default class Component {
-  constructor (element) {
+  constructor(element) {
     this._element = element
   }
 
-  init () {
+  init() {
     throw new Error('Init deve ser implementado')
   }
 }

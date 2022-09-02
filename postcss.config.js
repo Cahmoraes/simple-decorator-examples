@@ -1,5 +1,3 @@
 module.exports = {
-  presets: [
-    require('postcss-preset-env')
-  ]
+  presets: [require('postcss-preset-env')],
 }

@@ -5,28 +5,28 @@ export default [
     path: getEnvironment() || '/',
     component: 'method',
     options: {
-      title: 'Method'
-    }
+      title: 'Method',
+    },
   },
   {
     path: `${getEnvironment()}/method`,
     component: 'method',
     options: {
-      title: 'Method'
-    }
+      title: 'Method',
+    },
   },
   {
     path: `${getEnvironment()}/property`,
     component: 'property',
     options: {
-      title: 'Property'
-    }
+      title: 'Property',
+    },
   },
   {
     path: '*',
     component: 'notfound',
     options: {
-      title: 'Página não encontrada'
-    }
-  }
+      title: 'Página não encontrada',
+    },
+  },
 ]

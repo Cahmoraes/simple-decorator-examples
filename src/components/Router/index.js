@@ -3,11 +3,11 @@ import getEnvironment from '../../js/utils/getEnvironment'
 import RouterService from './router.service'
 
 export default class Router {
-  constructor () {
+  constructor() {
     this._currentRoute = so.observable(window.location.pathname)
   }
 
-  addEventListener () {
+  addEventListener() {
     window.addEventListener('popstate', () => {
       if (this._currentRoute() !== this.getWindowRoute().replace('/', '')) {
         this.setRoute(this.getWindowRoute())
@@ -15,35 +15,35 @@ export default class Router {
     })
   }
 
-  navigate (path) {
+  navigate(path) {
     RouterService.navigate(path)
   }
 
-  get route () {
+  get route() {
     return RouterService.route
   }
 
-  getWindowRoute () {
+  getWindowRoute() {
     return window.location.pathname
   }
 
-  setRoute (path) {
+  setRoute(path) {
     RouterService.setRoute(path)
   }
 
-  setCurrentRoute (path) {
+  setCurrentRoute(path) {
     if (typeof path !== 'undefined') {
       this._currentRoute(path)
     }
   }
 
-  subscribeObservable () {
-    RouterService.route.subscribe(value => {
+  subscribeObservable() {
+    RouterService.route.subscribe((value) => {
       this.setCurrentRoute(value)
     })
   }
 
-  verifyLocastorage () {
+  verifyLocalStorage() {
     const key = process.env.STORAGED_PATH
     const storagedPath = window.localStorage.getItem(key)
     if (storagedPath) {
@@ -54,8 +54,8 @@ export default class Router {
     }
   }
 
-  init () {
-    this.verifyLocastorage()
+  init() {
+    this.verifyLocalStorage()
     this.addEventListener()
     this.subscribeObservable()
     return this
